@@ -18,5 +18,5 @@
 - name: unarchive/install julia
   command: tar --strip-components=1 -zxvf /tmp/{{julia_tgz}} -C {{julia_prefix}}
   args:
-    creates: {{julia_prefix}}/bin/julia
+    creates: '{{julia_prefix}}/bin/julia'
 
