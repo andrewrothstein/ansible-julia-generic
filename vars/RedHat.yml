@@ -1,0 +1,15 @@
+---
+julia_dep_pkgs :
+  - git
+  - curl
+  - wget
+  - tar
+  - m4
+  - cmake
+  - glibc-devel
+  - binutils
+  - gcc
+  - gcc-c++
+  - make
+  - cpp
+  - gcc-gfortran

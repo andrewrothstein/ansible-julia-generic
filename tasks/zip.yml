@@ -1,0 +1,20 @@
+---
+- name: unzip archive
+  unarchive: >-
+    src=/tmp/{{julia_archive}}
+    dest=/tmp
+    creates=/tmp/{{julia_zip_dir_to_strip}}
+
+- name: copy/layout
+  shell: >-
+    cp -R /tmp/{{julia_zip_dir_to_strip}}/* {{julia_prefix}}
+  args:
+    creates: '{{julia_prefix}}/bin/julia'
+
+- name: cleanup
+  when: julia_install_cleanup == True
+  file: >
+    name={{item}} state=absent
+  with_items:
+    - "/tmp/{{julia_zip_dir_to_strip}}"
+    - "/tmp/{{julia_archive}}"

@@ -1,4 +1,13 @@
 ---
 julia_major_ver : '0.4'
-julia_minor_ver : '.3'
+julia_minor_ver : '.5'
 julia_platform : 'linux-x86_64'
+julia_prefix : '/usr/local'
+julia_archive_fmt : 'tgz'
+
+# zip doesn't support --strip-components so this is the
+# corresponding leakiness in the abstraction. zip sucks. long live tgz.
+julia_zip_dir_to_strip : 'julia_build'
+
+# delete the downloaded archive? trim down that container image!
+julia_install_cleanup : False

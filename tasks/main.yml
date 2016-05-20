@@ -1,31 +1,27 @@
 ---
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ansible_distribution_release}}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+
 - name: julia dep pkgs
   package: name={{item}} state=present
-  with_items:
-    - git
-    - curl
-    - wget
-    - tar
-    - m4
-    - cmake
-    - libc6-dev
-    - binutils
-    - gcc
-    - g++
-    - make
-    - cpp
-    - gfortran
+  with_items: '{{julia_dep_pkgs}}'
     
 - name: download julia
   get_url: >
-    url={{julia_tgz_url}}
-    dest=/tmp/{{julia_tgz}}
+    url={{julia_archive_url}}
+    dest=/tmp/{{julia_archive}}
     owner=root
     group=root
-    mode=644
+    mode=0644
 
 - name: unarchive/install julia
-  command: tar --strip-components=1 -zxvf /tmp/{{julia_tgz}} -C {{julia_prefix}}
-  args:
-    creates: '{{julia_prefix}}/bin/julia'
+  when: julia_archive_fmt == 'tgz'
+  include: tgz.yml
+
+- name: unzip/install julia
+  when: julia_archive_fmt == 'zip'
+  include: zip.yml
 

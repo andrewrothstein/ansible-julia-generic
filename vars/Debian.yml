@@ -1,0 +1,15 @@
+---
+julia_dep_pkgs :
+  - git
+  - curl
+  - wget
+  - tar
+  - m4
+  - cmake
+  - libc6-dev
+  - binutils
+  - gcc
+  - g++
+  - make
+  - cpp
+  - gfortran
