@@ -10,10 +10,10 @@ galaxy_info:
     - name: EL
       version:
         - 7
-    - name: fedora
+    - name: Fedora
       version:
         - 23
-    - name: ubuntu
+    - name: Ubuntu
       versions:
         - trusty
         - xenial
