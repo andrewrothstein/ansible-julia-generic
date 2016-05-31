@@ -1,7 +1,2 @@
 ---
-julia_ver : '{{julia_major_ver}}{{julia_minor_ver}}'
-julia_name : 'julia-{{julia_ver}}'
-julia_archive_ext : '{% if julia_archive_fmt == "tgz" %}tar.gz{% else %}zip{% endif %}'
-julia_archive : '{{julia_name}}-{{julia_platform}}.{{julia_archive_ext}}'
-julia_archive_url : 'https://julialang.s3.amazonaws.com/bin/linux/x64/{{julia_major_ver}}/{{julia_archive}}'
 
