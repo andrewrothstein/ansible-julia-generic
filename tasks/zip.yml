@@ -1,5 +1,7 @@
 ---
 - name: unzip archive
+  become: yes
+  become_user: root
   unarchive: >-
     copy=no
     src=/tmp/{{julia_archive}}
@@ -7,12 +9,16 @@
     creates=/tmp/{{julia_zip_dir_to_strip}}
 
 - name: copy/layout
+  become: yes
+  become_user: root
   shell: >-
     cp -R /tmp/{{julia_zip_dir_to_strip}}/* {{julia_prefix}}
   args:
     creates: '{{julia_prefix}}/bin/julia'
 
 - name: cleanup
+  become: yes
+  become_user: root
   when: julia_install_cleanup == True
   file: >
     name={{item}} state=absent

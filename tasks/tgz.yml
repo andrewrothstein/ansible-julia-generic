@@ -1,10 +1,14 @@
 ---
 - name: unarchive/install julia
+  become: yes
+  become_user: root
   command: tar --strip-components=1 -zxvf /tmp/{{julia_archive}} -C {{julia_prefix}}
   args:
     creates: '{{julia_prefix}}/bin/julia'
 
 - name: cleanup
+  become: yes
+  become_user: root
   when: julia_install_cleanup == True
   file: >
     name={{item}} state=absent

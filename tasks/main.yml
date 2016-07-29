@@ -6,15 +6,17 @@
     - "{{ ansible_os_family }}.yml"
 
 - name: julia dep pkgs
+  become: yes
+  become_user: root
   package: name={{item}} state=present
   with_items: '{{julia_dep_pkgs}}'
     
 - name: download julia
+  become: yes
+  become_user: root
   get_url: >
     url={{julia_archive_url}}
     dest=/tmp/{{julia_archive}}
-    owner=root
-    group=root
     mode=0644
 
 - name: unarchive/install julia
